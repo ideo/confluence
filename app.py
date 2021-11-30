@@ -48,3 +48,5 @@ if sum(sizes) > 0:
     name = st.text_input("Sign your work!")
     title = lg.treemap(spaces, sizes, ttl, name)
     lg.download(title)
+    msg = "Email your downloaded image to [jgambino@ideo.com](mailto:jgambino@ideo.com) and we will add it to our collection!"
+    st.markdown(msg)
