@@ -36,7 +36,7 @@ if spaces:
     for space in spaces:
         # with st.expander(space, expanded=False):
         # label = f"How big is your {space}, relative to everything else?"
-        size = st.slider(space, min_value=0, max_value=10, key=space)
+        size = st.slider(space, min_value=0, max_value=10, key=space, format="")
         # st.session_state["space_sizes"][space] = size
 sizes = [st.session_state[spc] for spc in spaces]
 
