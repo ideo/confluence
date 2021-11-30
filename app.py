@@ -25,7 +25,8 @@ if new_space not in st.session_state["custom_spaces"]:
     st.session_state["custom_spaces"].append(new_space)
 if "" in st.session_state["custom_spaces"]:
     st.session_state["custom_spaces"].remove("")
-custom = st.multiselect("Custom Spaces", sorted(st.session_state["custom_spaces"]))
+custom = st.multiselect("Custom Spaces", sorted(st.session_state["custom_spaces"]),
+    default=sorted(st.session_state["custom_spaces"]))
 spaces = academic + common + custom
 
 
