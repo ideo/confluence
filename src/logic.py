@@ -2,6 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import squarify
 
+from .config import ACADEMIC_COLORS, COMMON_COLORS, CUSTOM_COLORS
+
 
 def initialize_session_state():
     if "custom_spaces" not in st.session_state:
@@ -14,9 +16,13 @@ def treemap(spaces, sizes):
     spaces = [spc for spc in spaces if st.session_state[spc]]
     sizes = [sz for sz in sizes if sz]
 
+    color_defs = ACADEMIC_COLORS | COMMON_COLORS
+    colors = [color_defs[spc] if spc in color_defs else next(CUSTOM_COLORS) for spc in spaces]
+
+    spaces = [spc.replace(" ", "\n") for spc in spaces]
     fig, ax = plt.subplots()
     plt.rc('font', size=8)
-    squarify.plot(sizes=sizes, label=spaces, alpha=0.7)
+    squarify.plot(sizes=sizes, label=spaces, color=colors, alpha=0.7, pad=True)
     plt.axis('off')
     st.pyplot(fig)
 

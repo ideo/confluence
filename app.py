@@ -1,12 +1,12 @@
 import streamlit as st
-# import matplotlib.pyplot as plt
 
-# import pandas as pd
-# from statsmodels.graphics.mosaicplot import mosaic
-
-# import src.plotting as plt
 import src.logic as lg
 from src.config import ACADEMIC_SPACES, COMMON_SPACES
+
+
+st.set_page_config(
+    page_title="Design Your DPI",
+    page_icon="img/logo.jpeg")
 
 
 lg.initialize_session_state()
