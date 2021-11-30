@@ -20,7 +20,7 @@ academic = st.multiselect("Academic Spaces", ACADEMIC_SPACES)
 common = st.multiselect("Common Spaces", COMMON_SPACES)
 
 new_space = st.text_input("Define a New Space")
-new_space = new_space.title()
+new_space = new_space.title().replace("'S", "'s")
 if new_space not in st.session_state["custom_spaces"]:
     st.session_state["custom_spaces"].append(new_space)
 if "" in st.session_state["custom_spaces"]:
