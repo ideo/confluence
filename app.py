@@ -43,56 +43,6 @@ sizes = [st.session_state[spc] for spc in spaces]
 
 if sum(sizes) > 0:
     st.subheader("3. Here's Your Two Dimensional DPI!")
-    lg.treemap(spaces, sizes)
-
-
-print(st.session_state)
-# if "room_types" not in st.session_state:
-#     st.session_state["room_types"] = ["Public Space", "Classroom", "Coworking", "Research Lab", "Cafe", "Nursery"]
-
-
-# st.multiselect("What do you like?", st.session_state["room_types"])
-
-
-# new_type = st.text_input("Add a room type")
-# if new_type not in st.session_state["room_types"]:
-#     st.session_state["room_types"].append(new_type)
-
-
-# if "rooms" not in st.session_state:
-#     st.session_state["rooms"] = {rm:0 for rm in st.session_state["room_types"]}
-
-# for room_type in st.session_state["room_types"]:
-#     if room_type != "":
-#         with st.expander(room_type):
-#             st.session_state["rooms"][room_type] = st.slider(f"How many {room_type} type rooms do you want?", min_value=1, max_value=10, key=room_type)
-
-# if "" in st.session_state["rooms"]:
-#     del(st.session_state["rooms"][""])
-# print(st.session_state["rooms"])
-
-# # volume = [350, 220, 170, 150, 50]
-# # labels = ['Liquid\n volume: 350k', 'Savoury\n volume: 220k',
-# #          'Sugar\n volume: 170k', 'Frozen\n volume: 150k',
-# #          'Non-food\n volume: 50k']
-# volume = st.session_state["rooms"].values()
-# labels = st.session_state["rooms"].keys()
-# color_list = ['#0f7216', '#b2790c', '#ffe9a3',
-#              '#f9d4d4', '#d35158', '#ea3033']
-
-
-# fig, ax = plt.subplots()
-# plt.rc('font', size=14)
-# squarify.plot(sizes=volume, label=labels,
-#              color=color_list, alpha=0.7)
-# plt.axis('off')
-# st.pyplot(fig)
-
-
-# # data = lg.treemap_dictionary(st.session_state["rooms"])
-# # for node in data:
-# #     print(node)
-
-
-# # spec = plt.treemap(data)
-# # st.vega_lite_chart(data, spec)
+    name = st.text_input("Sign your work! What is your name?")
+    lg.treemap(spaces, sizes, name)
+    lg.download()
