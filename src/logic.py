@@ -16,7 +16,8 @@ def treemap(spaces, sizes, name):
     spaces = [spc for spc in spaces if st.session_state[spc]]
     sizes = [sz for sz in sizes if sz]
 
-    color_defs = ACADEMIC_COLORS | COMMON_COLORS
+    # color_defs = ACADEMIC_COLORS | COMMON_COLORS
+    color_defs = {**ACADEMIC_COLORS, **COMMON_COLORS}
     colors = [color_defs[spc] if spc in color_defs else next(CUSTOM_COLORS) for spc in spaces]
 
     spaces = [spc.replace(" ", "\n") for spc in spaces]
