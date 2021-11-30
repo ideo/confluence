@@ -43,6 +43,7 @@ sizes = [st.session_state[spc] for spc in spaces]
 
 if sum(sizes) > 0:
     st.subheader("3. Here's Your Two Dimensional DPI!")
-    name = st.text_input("Sign your work! What is your name?")
-    lg.treemap(spaces, sizes, name)
-    lg.download()
+    ttl = st.text_input("Name your piece!", value="My 2D Discovery Partners Institute")
+    name = st.text_input("Sign your work!")
+    title = lg.treemap(spaces, sizes, ttl, name)
+    lg.download(title)

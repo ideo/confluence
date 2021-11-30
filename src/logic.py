@@ -12,7 +12,7 @@ def initialize_session_state():
         st.session_state["space_sizes"] = {}
 
 
-def treemap(spaces, sizes, name):
+def treemap(spaces, sizes, ttl, name):
     spaces = [spc for spc in spaces if st.session_state[spc]]
     sizes = [sz for sz in sizes if sz]
 
@@ -25,15 +25,16 @@ def treemap(spaces, sizes, name):
     plt.rc('font', size=8)
     squarify.plot(sizes=sizes, label=spaces, color=colors, alpha=0.7, pad=True)
     plt.axis('off')
-
-    ttl = f"2D Discovery Partners Institue\nMade by {name}" if name else "2D Discovery Partners Institue"
-    plt.title(ttl)
+    
+    title = f"{ttl.title()}\nby: {name}" if name else ttl.title()
+    # title = f"2D Discovery Partners Institue\nMade by {name}" if name else "2D Discovery Partners Institue"
+    plt.title(title)
     st.pyplot(fig)
-    return fig
+    return title
 
 
-def download():
-    filename = "dpi_2D_layout.png"
+def download(title):
+    filename = "2D_DPI.png"
     plt.savefig(filename, dpi=150)
 
     with open(filename, "rb") as file:
