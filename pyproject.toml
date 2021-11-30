@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "Project Confluence"
+version = "0.1.0"
+description = "Prototypes for DPI stakeholder research"
+authors = ["Joseph Gambino <joe@gam.bingo>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+streamlit = "^1.2.0"
+pandas = "^1.3.4"
+statsmodels = "^0.13.1"
+matplotlib = "^3.5.0"
+squarify = "^0.4.3"
+
+[tool.poetry.dev-dependencies]
+watchdog = "^2.1.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
