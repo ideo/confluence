@@ -10,11 +10,28 @@ from .config import ACADEMIC_COLORS, COMMON_COLORS, CUSTOM_COLORS
 def initialize_session_state():
     if "custom_spaces" not in st.session_state:
         st.session_state["custom_spaces"] = []
+    
     if "space_sizes" not in st.session_state:
         st.session_state["space_sizes"] = {}
+    
     if "color_defs" not in st.session_state:
         # color_defs = ACADEMIC_COLORS | COMMON_COLORS
         st.session_state["color_defs"] = {**ACADEMIC_COLORS, **COMMON_COLORS}
+
+
+def add_custom_space():
+    new_space = st.text_input("Define a New Space")
+    new_space = new_space.title().replace("'S", "'s")
+
+    if new_space not in st.session_state["custom_spaces"]:
+        st.session_state["custom_spaces"].append(new_space)
+
+    if "" in st.session_state["custom_spaces"]:
+            st.session_state["custom_spaces"].remove("")
+
+    options = st.session_state["custom_spaces"]
+    custom = st.multiselect("Custom Spaces", options, default=options)
+    return custom
 
 
 def treemap(spaces, sizes, ttl, name):

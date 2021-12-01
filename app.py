@@ -12,7 +12,7 @@ st.set_page_config(
 
 lg.initialize_session_state()
 st.header("Design Your Discover Partners Institute")
-col1, col2, col3 = st.columns((3, 1, 3))
+col1, col2, col3 = st.columns((5, 1, 5))
 
 
 with col1:
@@ -21,15 +21,7 @@ with col1:
     st.write(msg)
     academic = st.multiselect("Academic Spaces", ACADEMIC_SPACES)
     common = st.multiselect("Common Spaces", COMMON_SPACES)
-
-    new_space = st.text_input("Define a New Space")
-    new_space = new_space.title().replace("'S", "'s")
-    if new_space not in st.session_state["custom_spaces"]:
-        st.session_state["custom_spaces"].append(new_space)
-    if "" in st.session_state["custom_spaces"]:
-        st.session_state["custom_spaces"].remove("")
-    custom = st.multiselect("Custom Spaces", sorted(st.session_state["custom_spaces"]),
-        default=sorted(st.session_state["custom_spaces"]))
+    custom = lg.add_custom_space()
     spaces = academic + common + custom
     lg.create_color_dictionary(spaces)
 
@@ -39,10 +31,7 @@ with col1:
         msg = "How big should each space be, relative to everything else?"
         st.write(msg)
         for space in spaces:
-            # with st.expander(space, expanded=False):
-            # label = f"How big is your {space}, relative to everything else?"
             size = st.slider(space, min_value=0, max_value=10, key=space, format="")
-            # st.session_state["space_sizes"][space] = size
     sizes = [st.session_state[spc] for spc in spaces]
 
 
