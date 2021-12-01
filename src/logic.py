@@ -18,6 +18,7 @@ def treemap(spaces, sizes, ttl, name):
 
     # color_defs = ACADEMIC_COLORS | COMMON_COLORS
     color_defs = {**ACADEMIC_COLORS, **COMMON_COLORS}
+    print(color_defs)
     colors = [color_defs[spc] if spc in color_defs else next(CUSTOM_COLORS) for spc in spaces]
 
     spaces = [spc.replace(" ", "\n") for spc in spaces]

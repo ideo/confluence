@@ -4,6 +4,10 @@ import src.logic as lg
 from src.config import ACADEMIC_SPACES, COMMON_SPACES
 
 
+import sys
+print("sys.version: ", sys.version)
+
+
 st.set_page_config(
     page_title="Design Your DPI",
     page_icon="img/logo.jpeg",
@@ -12,7 +16,7 @@ st.set_page_config(
 
 lg.initialize_session_state()
 st.header("Design Your Discover Partners Institute")
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns((3, 1, 3))
 
 
 with col1:
@@ -45,7 +49,7 @@ with col1:
     sizes = [st.session_state[spc] for spc in spaces]
 
 
-with col2:
+with col3:
     if sum(sizes) > 0:
         st.subheader("3. Here's Your Two Dimensional DPI!")
         ttl = st.text_input("Name your piece!", value="My 2D Discovery Partners Institute")
