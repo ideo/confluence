@@ -52,4 +52,4 @@ CUSTOM_COLORS  = [
     "#7F8C4F",
     "#A4A680",
 ]
-CUSTOM_COLORS = (color for color in CUSTOM_COLORS + list(COMMON_COLORS.values()) + list(ACADEMIC_COLORS.values()))
+# CUSTOM_COLORS = [color for color in CUSTOM_COLORS + list(COMMON_COLORS.values()) + list(ACADEMIC_COLORS.values())]

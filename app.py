@@ -4,10 +4,6 @@ import src.logic as lg
 from src.config import ACADEMIC_SPACES, COMMON_SPACES
 
 
-import sys
-print("sys.version: ", sys.version)
-
-
 st.set_page_config(
     page_title="Design Your DPI",
     page_icon="img/logo.jpeg",
@@ -35,6 +31,7 @@ with col1:
     custom = st.multiselect("Custom Spaces", sorted(st.session_state["custom_spaces"]),
         default=sorted(st.session_state["custom_spaces"]))
     spaces = academic + common + custom
+    lg.create_color_dictionary(spaces)
 
 
     if spaces:

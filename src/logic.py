@@ -1,3 +1,5 @@
+from random import choice
+
 import streamlit as st
 import matplotlib.pyplot as plt
 import squarify
@@ -10,16 +12,15 @@ def initialize_session_state():
         st.session_state["custom_spaces"] = []
     if "space_sizes" not in st.session_state:
         st.session_state["space_sizes"] = {}
+    if "color_defs" not in st.session_state:
+        # color_defs = ACADEMIC_COLORS | COMMON_COLORS
+        st.session_state["color_defs"] = {**ACADEMIC_COLORS, **COMMON_COLORS}
 
 
 def treemap(spaces, sizes, ttl, name):
     spaces = [spc for spc in spaces if st.session_state[spc]]
     sizes = [sz for sz in sizes if sz]
-
-    # color_defs = ACADEMIC_COLORS | COMMON_COLORS
-    color_defs = {**ACADEMIC_COLORS, **COMMON_COLORS}
-    print(color_defs)
-    colors = [color_defs[spc] if spc in color_defs else next(CUSTOM_COLORS) for spc in spaces]
+    colors = [st.session_state["color_defs"][spc] for spc in spaces]
 
     spaces = [spc.replace(" ", "\n") for spc in spaces]
     fig, ax = plt.subplots()
@@ -32,6 +33,12 @@ def treemap(spaces, sizes, ttl, name):
     plt.title(title)
     st.pyplot(fig)
     return title
+
+
+def create_color_dictionary(spaces):
+    for space in spaces:
+        if space not in st.session_state["color_defs"]:
+            st.session_state["color_defs"][space] = choice(CUSTOM_COLORS)
 
 
 def download(title):
