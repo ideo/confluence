@@ -31,7 +31,7 @@ with col1:
         msg = "How big should each space be, relative to everything else?"
         st.write(msg)
         for space in spaces:
-            size = st.slider(space, min_value=0, max_value=10, key=space, format="")
+            size = st.slider(space, value=4, min_value=0, max_value=10, key=space, format="")
     sizes = [st.session_state[spc] for spc in spaces]
 
 
