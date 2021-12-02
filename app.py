@@ -12,7 +12,7 @@ st.set_page_config(
 
 lg.initialize_session_state()
 st.header("Design Your Discover Partners Institute")
-col1, col2, col3 = st.columns((5, 1, 5))
+col1, col2, col3 = st.columns((4, 1, 5))
 
 
 with col1:
@@ -31,7 +31,13 @@ with col1:
         msg = "How big should each space be, relative to everything else?"
         st.write(msg)
         for space in spaces:
-            size = st.slider(space, min_value=0, max_value=10, key=space, format="")
+            size = st.slider(space, value=4, min_value=0, max_value=10, key=space, format="")
+            label = "Add a note about this room"
+            btn = st.button(label, key=f"{space}_btn")
+            if btn:
+                note = st.text_area("Add a note about this room", key=f"{space}_note")
+                if note:
+                    st.session_state["notes"]["space"] = note
     sizes = [st.session_state[spc] for spc in spaces]
 
 
