@@ -4,12 +4,15 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import squarify
 
-from .config import ACADEMIC_COLORS, COMMON_COLORS, CUSTOM_COLORS
+from .app_config import ACADEMIC_COLORS, COMMON_COLORS, CUSTOM_COLORS
 
 
 def initialize_session_state():
     if "custom_spaces" not in st.session_state:
         st.session_state["custom_spaces"] = []
+
+    if "notes" not in st.session_state:
+        st.session_state["notes"] = {}
     
     if "space_sizes" not in st.session_state:
         st.session_state["space_sizes"] = {}
@@ -35,6 +38,7 @@ def add_custom_space():
 
 
 def treemap(spaces, sizes, ttl, name):
+    # spaces = [f"{spc}\n{st.session_state[f'{spc}_notes']}" for spc in spaces if st.session_state[spc]]
     spaces = [spc for spc in spaces if st.session_state[spc]]
     sizes = [sz for sz in sizes if sz]
     colors = [st.session_state["color_defs"][spc] for spc in spaces]

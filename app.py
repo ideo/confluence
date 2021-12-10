@@ -1,7 +1,7 @@
 import streamlit as st
 
-import src.logic as lg
-from src.config import ACADEMIC_SPACES, COMMON_SPACES
+import src.app_logic as lg
+from src.app_config import ACADEMIC_SPACES, COMMON_SPACES
 
 
 st.set_page_config(
@@ -12,7 +12,7 @@ st.set_page_config(
 
 lg.initialize_session_state()
 st.header("Design Your Discover Partners Institute")
-col1, col2, col3 = st.columns((5, 1, 5))
+col1, col2, col3 = st.columns((4, 1, 5))
 
 
 with col1:
@@ -24,7 +24,6 @@ with col1:
     custom = lg.add_custom_space()
     spaces = academic + common + custom
     lg.create_color_dictionary(spaces)
-
 
     if spaces:
         st.subheader("2. Size 'em up!")

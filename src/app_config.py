@@ -17,7 +17,7 @@ ACADEMIC_COLORS = [
 ACADEMIC_COLORS = {name:color for name, color in zip(ACADEMIC_SPACES, ACADEMIC_COLORS)}
 
 COMMON_SPACES = [
-    "Auditoriam",
+    "Auditorium",
     "Meeting Room",
     "Atrium",
     "Lounge",
