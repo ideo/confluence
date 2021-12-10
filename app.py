@@ -1,7 +1,7 @@
 import streamlit as st
 
-import src.logic as lg
-from src.config import ACADEMIC_SPACES, COMMON_SPACES
+import src.app_logic as lg
+from src.app_config import ACADEMIC_SPACES, COMMON_SPACES
 
 
 st.set_page_config(

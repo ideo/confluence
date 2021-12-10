@@ -4,7 +4,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import squarify
 
-from .config import ACADEMIC_COLORS, COMMON_COLORS, CUSTOM_COLORS
+from .app_config import ACADEMIC_COLORS, COMMON_COLORS, CUSTOM_COLORS
 
 
 def initialize_session_state():
