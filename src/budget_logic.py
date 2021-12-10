@@ -13,7 +13,8 @@ def initialize_session_state():
 
 def update_budget():
     st.session_state["spend"] = sum(
-        OPTIONS[space]["qty"]*OPTIONS[space]["price"] for space in OPTIONS
+        # OPTIONS[space]["qty"]*OPTIONS[space]["price"] for space in OPTIONS
+        OPTIONS[space]["qty"]*st.session_state[f"{space}_price"] for space in OPTIONS
         )
 
 
@@ -27,7 +28,9 @@ def space_sliders(st_col, label, config):
 
     
 def quantity_slider(option, config):
-    label = f"{option} – ${config[option]['price']} per room"
+    price = st.session_state[f"{option}_price"]
+    # label = f"{option} – ${config[option]['price']} per room"
+    label = f"{option} – ${price} per room"
     qty = st.slider(label, 
         value=0,
         min_value=0,
@@ -46,7 +49,7 @@ def amenity_checkboxes(st_col, title):
 
 
 def treemap(st_col, ttl, name):
-    spaces, sizes = [], []
+    spaces, sizes, colors = [], [], []
     categories = [BIZNESS_SPACES, COMMON_SPACES, TECH_SPACES, ACADEMIC_SPACES]
     for category in categories:
         for room_type in category:
@@ -54,14 +57,14 @@ def treemap(st_col, ttl, name):
             if qty:
                 spaces += [room_type]*qty
                 sizes += [category[room_type]["size"]]*qty
+                colors += [category[room_type]["color"]]*qty
     
-    # colors = [st.session_state["color_defs"][spc] for spc in spaces]
-    # spaces = [spc.replace(" ", "\n") for spc in spaces]
+    spaces = [spc.replace(" ", "\n") for spc in spaces]
 
     fig, ax = plt.subplots()
     plt.rc('font', size=8)
-    # squarify.plot(sizes=sizes, label=spaces, color=colors, alpha=0.7, pad=True)
-    squarify.plot(sizes=sizes, label=spaces, alpha=0.7, pad=True)
+    squarify.plot(sizes=sizes, label=spaces, color=colors, alpha=0.7, pad=True)
+    # squarify.plot(sizes=sizes, label=spaces, alpha=0.7, pad=True)
     plt.axis('off')
     
     title = f"{ttl.title()}\nby: {name}" if name else ttl.title()

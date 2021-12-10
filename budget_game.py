@@ -1,18 +1,20 @@
 import streamlit as st
 
 import src.budget_logic as lg
+from src.budget_sidebar import sidebar
 from src.budget_config import (BIZNESS_SPACES, COMMON_SPACES, TECH_SPACES, 
     ACADEMIC_SPACES, AMENITIES)
 
 
 st.set_page_config(
     page_title="Design Your DPI",
-    # page_icon="src/img/pink-pomelo-3723496-3104020.png",
-    layout="wide")
+    page_icon="img/logo.jpeg",
+    layout="wide",
+    initial_sidebar_state="collapsed")
 
 
 lg.initialize_session_state()
-
+sidebar()
 
 st.header("Design Your DPI")
 msg = """
