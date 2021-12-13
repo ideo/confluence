@@ -70,7 +70,7 @@ def define_your_own(st_col, title, config):
 
 
 def calculate_budget_cap():
-    limit = 2
+    limit = 1
     budget_cap = sum(OPTIONS[space]["price"]*limit for space in OPTIONS)
     budget_cap = int(round(budget_cap / 100.0)) * 100
     return budget_cap
