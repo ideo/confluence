@@ -99,8 +99,6 @@ def total_spend(st_col, budget_cap, total_spend):
             "Budget": total_spend,
             "Order": 2}, ignore_index=True)
 
-    print(df)
-
     color_codes = {
         "Under Budget": "#94C343CC",
         "Cutting it Close": "#E0A21DCC",

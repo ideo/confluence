@@ -14,7 +14,8 @@ st.set_page_config(
 
 
 lg.initialize_session_state()
-sidebar()
+budget_cap = lg.calculate_budget_cap()
+budget_cap = sidebar(budget_cap)
 
 st.header("Design Your DPI")
 msg = """
@@ -29,8 +30,8 @@ lg.space_sliders(col2, "Entrepreneurial", BIZNESS_SPACES)
 lg.amenity_checkboxes(col1, "Amenities")
 lg.define_your_own(col2, "Custom Spaces", CUSTOM_SPACES)
 
-budget_cap = lg.calculate_budget_cap()
-col3.write(f"Be careful. You only have ${budget_cap} to spend!")
+
+col3.subheader(f"Be careful. You only have ${budget_cap} to spend!")
 col3.metric("You've spent", f"${st.session_state['spend']}")
 lg.total_spend(col3, budget_cap, st.session_state["spend"])
 ttl = col3.text_input("Name your piece!", value="My 2D Discovery Partners Institute")
