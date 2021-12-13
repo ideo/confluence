@@ -21,7 +21,7 @@ def sidebar(budget_cap):
             min_value=0,
             max_value=100,
             key=f"{option}_price",
-            format="$"
+            format="$%s"
         )
 
     return new_budget_cap
