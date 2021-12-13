@@ -113,7 +113,7 @@ def total_spend(st_col, budget_cap, total_spend):
             "color": {
                 "field": "Legend",
                 "scale": {"range": colors}},
-            "x": {"aggregate": "sum", "field": "Limit", "title": "Budget"},
+            "x": {"aggregate": "sum", "field": "Limit", "title": f"${budget_cap} Budget"},
             "y": {"field": "Spend"},
             "order": {"field": "Order", "type": "ordinal"}
         }
@@ -161,7 +161,7 @@ def treemap(st_col, ttl, name):
 
 
 def download(st_col, name):
-    name = name.lower().replace("", "_")
+    name = name.lower().replace(" ", "_")
     filename = f"2D_DPI_{name}.png"
     plt.savefig(filename, dpi=150)
 
