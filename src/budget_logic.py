@@ -148,16 +148,13 @@ def treemap(st_col, ttl, name):
     spaces = [spc.replace(" ", "\n") for spc in spaces]
 
     fig, _ = plt.subplots()
-    plt.rc('font', size=8)
+    plt.rc('font', size=6)
     squarify.plot(sizes=sizes, label=spaces, color=colors, alpha=0.7, pad=True)
-    # squarify.plot(sizes=sizes, label=spaces, alpha=0.7, pad=True)
     plt.axis('off')
     
     title = f"{ttl.title()}\nby: {name}" if name else ttl.title()
-    # title = f"2D Discovery Partners Institue\nMade by {name}" if name else "2D Discovery Partners Institue"
     plt.title(title)
     st_col.pyplot(fig)
-    # return title
 
 
 def download(st_col, name):
