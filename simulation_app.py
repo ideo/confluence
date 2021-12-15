@@ -42,4 +42,4 @@ lg.draw_graph()
 
 
 
-st.write("Where is the next component?")
+# st.write("Where is the next component?")
