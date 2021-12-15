@@ -24,7 +24,9 @@ def save_graph(graph):
     st.session_state["graph"] = nx.to_dict_of_dicts(graph)
 
 
-def space_sliders(st_col, label, config):
+def space_sliders(st_col, label, config, spacer=False):
+    if spacer:
+        st_col.markdown("---")
     st_col.markdown(f"**{label}**")
     options = sorted(config.keys())
     for option in options:
@@ -77,14 +79,13 @@ def connect(node1, node2):
 
 
 def draw_graph():
-    width, height = 1000, 1000
-    ntwk = Network(width=f"{width} px", height=f"{height} px")
-    
-    graph = retrive_graph()
-    ntwk.from_nx(graph)
+    # width = st.slider("Width", value=500, min_value=100, max_value=2000)
+    # height = st.slider("Height", value=500, min_value=100, max_value=2000)
+    ntwk = Network(width=f"100%")   # do not specify height here
+    ntwk.from_nx(retrive_graph())
 
     filename = "simulation_pyvis_graph.html"
     ntwk.show(filename)
     HtmlFile = open(filename, "r", encoding="utf-8")
     source_code = HtmlFile.read()
-    components.html(source_code, height=height*3)
+    components.html(source_code, height=600)

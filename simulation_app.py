@@ -18,13 +18,13 @@ st.title("Build and Test a DPI Layout")
 
 
 st.subheader("Choose which spaces to include")
-label = "Select how many of each room type to include"
+label = "Select how many of each room type to include."
 with st.expander(label, expanded=True):
-    col1, col2 = st.columns(2)
+    col1, _, col2 = st.columns([5, 1, 5])
     lg.space_sliders(col1, "Shared Spaces", COMMON_SPACES)
     lg.space_sliders(col2, "Academic Spaces", ACADEMIC_SPACES)
-    lg.space_sliders(col2, "Start-Up Spaces", BIZNESS_SPACES)
-    lg.space_sliders(col2, "Student Spaces", TECH_SPACES)
+    lg.space_sliders(col2, "Start-Up Spaces", BIZNESS_SPACES, spacer=True)
+    lg.space_sliders(col2, "Student Spaces", TECH_SPACES, spacer=True)
 lg.update_nodes()
 
 
@@ -36,4 +36,10 @@ if clicked and node1 and node2:
 
 
 # print(st.session_state)
+st.subheader("Network Diagram")
+st.write("This network diagram represents the flow of access from room to room in DPI.")
 lg.draw_graph()
+
+
+
+st.write("Where is the next component?")
