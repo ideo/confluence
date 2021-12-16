@@ -72,10 +72,14 @@ def select_two_nodes(graph):
 
 
 def connect(node1, node2, graph):
-    # graph = retrive_graph()
-    #  
     if node1 != node2 and (node1, node2) not in graph.edges:
         graph.add_edge(node1, node2)
+    save_graph(graph)
+
+
+def disconnect(node1, node2, graph):
+    if node1 != node2 and (node1, node2) in graph.edges:
+        graph.remove_edge(node1, node2)
     save_graph(graph)
 
 

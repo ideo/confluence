@@ -39,9 +39,13 @@ lg.update_nodes()
 st.markdown("#### 3. Add connections between rooms")
 graph = lg.retrive_graph()
 node1, node2 = lg.select_two_nodes(graph)
-clicked = st.button("Connect!")
-if clicked and node1 and node2:
+# col1, col2, _ = st.columns([2,2,7])
+connect_clicked = st.button("Connect!")
+if connect_clicked and node1 and node2:
     lg.connect(node1, node2, graph)
+disconnect_clicked = st.button("Disconnect!")
+if disconnect_clicked and node1 and node2:
+    lg.disconnect(node1, node2, graph)
 
 
 st.markdown("#### 4. Download your graph to reuse later")
