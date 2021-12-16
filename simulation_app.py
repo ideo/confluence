@@ -16,10 +16,18 @@ st.set_page_config(
 lg.initialize_session_state()
 st.title("Build and Test a DPI Layout")
 
+st.subheader("Design Your Space")
+st.markdown("##### 1. Upload a saved graph")
+msg = """
+    If you have a previously saved graph, upload it here. Or, skip this step 
+    and design a new layout.
+"""
+st.write(msg)
+lg.upload()
 
-st.subheader("Choose which spaces to include")
-label = "Select how many of each room type to include."
-with st.expander(label, expanded=True):
+st.markdown("##### 2. Choose which spaces to include")
+label = "Click here to select how many of each room type to include."
+with st.expander(label, expanded=False):
     col1, _, col2 = st.columns([5, 1, 5])
     lg.space_sliders(col1, "Shared Spaces", COMMON_SPACES)
     lg.space_sliders(col2, "Academic Spaces", ACADEMIC_SPACES)
@@ -28,11 +36,16 @@ with st.expander(label, expanded=True):
 lg.update_nodes()
 
 
-st.subheader("Add connections between rooms")
+st.markdown("#### 3. Add connections between rooms")
 node1, node2 = lg.select_two_nodes()
 clicked = st.button("Connect!")
 if clicked and node1 and node2:
     lg.connect(node1, node2)
+
+
+st.markdown("#### 4. Download your graph to reuse later")
+lg.download()
+st.markdown("---")
 
 
 # print(st.session_state)

@@ -3,14 +3,14 @@ COMMON_SPACES = {
         "price":    50,
         "qty":      0,
         "size":     5,
-        "color":    "#1E2940",
+        "color":    "#e54c28",
     },
-    # "Meeting Room": {
-    #     "price":    10,
-    #     "qty":      0,
-    #     "size":     1,
-    #     "color":    "",
-    # },
+    "Meeting Room": {
+        "price":    10,
+        "qty":      0,
+        "size":     1,
+        "color":    "#cbebde",
+    },
     # "Atrium": {
     #     "price":    10,
     #     "qty":      0,
@@ -27,7 +27,7 @@ COMMON_SPACES = {
         "price":    30,
         "qty":      0,
         "size":     2,
-        "color":    "#688EA6",
+        "color":    "#f9941b",
     },
     # "Retail": {
     #     "price":    10,
@@ -71,6 +71,12 @@ COMMON_SPACES = {
         "size":     1,
         "color":    "#D9C9BA",
     },
+    "Huddle": {
+        "price":    20,
+        "qty":      0,
+        "size":     1,
+        "color":    "#e7531c",
+    },
 }
 
 
@@ -85,7 +91,7 @@ TECH_SPACES = {
         "price":    15,
         "qty":      0,
         "size":     1,
-        "color":    "#5F734C",
+        "color":    "#fdb10e",
     },
 }
 
@@ -95,13 +101,13 @@ ACADEMIC_SPACES = {
         "price":    80,
         "qty":      0,
         "size":     1,
-        "color":    "#D9C9BA",
+        "color":    "#0c74bc",
     },
     "Private Office": {
         "price":    10,
         "qty":      0,
         "size":     0.5,
-        "color":    "#8C6151",
+        "color":    "#4abd8d",
     },
 }
 
