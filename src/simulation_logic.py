@@ -1,5 +1,6 @@
 import json
 from io import StringIO 
+from copy import copy
 
 # from numpy import e
 import streamlit as st
@@ -57,26 +58,22 @@ def update_nodes():
     save_graph(graph)
 
 
-def select_two_nodes():
+def select_two_nodes(graph):
     col1, col2 = st.columns(2)
-    graph = retrive_graph()
 
     label1 = "Add a connection between this room"
-    options1 = list(graph.nodes) if len(graph.nodes) > 1 else []
-    options1 = sorted(options1)
-    node1 = col1.selectbox(label1, options1)
+    options = list(copy(graph.nodes)) if len(graph.nodes) > 1 else []
+    options = sorted(options)
+    node1 = col1.selectbox(label1, options)
 
     label2 = "And this room"
-    # options2 = list(graph.nodes) if len(graph.nodes) > 1 else []
-    options2 = options1
-    # if node1 in options2:
-    #     options2.remove(node1)
-    node2 = col2.selectbox(label2, options2)
+    node2 = col2.selectbox(label2, options)
     return node1, node2
 
 
-def connect(node1, node2):
-    graph = retrive_graph()
+def connect(node1, node2, graph):
+    # graph = retrive_graph()
+    #  
     if node1 != node2 and (node1, node2) not in graph.edges:
         graph.add_edge(node1, node2)
     save_graph(graph)
