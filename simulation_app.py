@@ -38,7 +38,6 @@ lg.update_nodes()
 
 st.markdown("#### 3. Add connections between rooms")
 node1, node2 = lg.select_two_nodes()
-# col1, col2, _ = st.columns([2,2,7])
 connect_clicked = st.button("Connect!")
 if connect_clicked and node1 and node2:
     lg.connect(node1, node2)
@@ -55,8 +54,4 @@ st.markdown("---")
 # print(st.session_state)
 st.subheader("Network Diagram")
 st.write("This network diagram represents the flow of access from room to room in DPI.")
-lg.draw_graph( )
-
-
-
-# st.write("Where is the next component?")
+lg.draw_graph()
