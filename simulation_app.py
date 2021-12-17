@@ -37,15 +37,14 @@ lg.update_nodes()
 
 
 st.markdown("#### 3. Add connections between rooms")
-graph = lg.retrive_graph()
-node1, node2 = lg.select_two_nodes(graph)
+node1, node2 = lg.select_two_nodes()
 # col1, col2, _ = st.columns([2,2,7])
 connect_clicked = st.button("Connect!")
 if connect_clicked and node1 and node2:
-    lg.connect(node1, node2, graph)
+    lg.connect(node1, node2)
 disconnect_clicked = st.button("Disconnect!")
 if disconnect_clicked and node1 and node2:
-    lg.disconnect(node1, node2, graph)
+    lg.disconnect(node1, node2)
 
 
 st.markdown("#### 4. Download your graph to reuse later")
@@ -56,7 +55,7 @@ st.markdown("---")
 # print(st.session_state)
 st.subheader("Network Diagram")
 st.write("This network diagram represents the flow of access from room to room in DPI.")
-lg.draw_graph()
+lg.draw_graph( )
 
 
 

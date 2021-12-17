@@ -1,3 +1,4 @@
+# import inspect
 import json
 from io import StringIO 
 from copy import copy
@@ -21,11 +22,15 @@ def retrive_graph():
     graph = nx.from_dict_of_dicts(st.session_state["graph"])
     if "" in graph.nodes:
         graph.remove_node("")
+    # parent = inspect.getouterframes( inspect.currentframe() )[1][3]
+    # print(f"retrieved graph, {parent}")
     return graph
 
 
 def save_graph(graph):
     st.session_state["graph"] = nx.to_dict_of_dicts(graph)
+    # parent = inspect.getouterframes( inspect.currentframe() )[1][3]
+    # print(f"saved graph, {parent}")
 
 
 def space_sliders(st_col, label, config, spacer=False):
@@ -58,7 +63,8 @@ def update_nodes():
     save_graph(graph)
 
 
-def select_two_nodes(graph):
+def select_two_nodes():
+    graph = retrive_graph()
     col1, col2 = st.columns(2)
 
     label1 = "Add a connection between this room"
@@ -71,16 +77,19 @@ def select_two_nodes(graph):
     return node1, node2
 
 
-def connect(node1, node2, graph):
+def connect(node1, node2):
+    graph = retrive_graph()
     if node1 != node2 and (node1, node2) not in graph.edges:
         graph.add_edge(node1, node2)
-    save_graph(graph)
+        save_graph(graph)
+        print(f"Connected {node1} and {node2}")
 
 
-def disconnect(node1, node2, graph):
+def disconnect(node1, node2):
+    graph = retrive_graph()
     if node1 != node2 and (node1, node2) in graph.edges:
         graph.remove_edge(node1, node2)
-    save_graph(graph)
+        save_graph(graph)
 
 
 def draw_graph():
@@ -102,17 +111,20 @@ def draw_graph():
 
 
 def upload():
-    uploaded_file = st.file_uploader("Choose a file")
-    if uploaded_file is not None:
-        string_data = StringIO(uploaded_file.getvalue().decode("utf-8")).read()
-        graph_dict = json.loads(string_data)
-        graph = nx.from_dict_of_dicts(graph_dict)
-        save_graph(graph)
+    with st.form("my-form", clear_on_submit=True):
+        uploaded_file = st.file_uploader("Choose a file")
+        submitted = st.form_submit_button("Upload!")
+
+        if submitted and uploaded_file is not None:
+            string_data = StringIO(uploaded_file.getvalue().decode("utf-8")).read()
+            graph_dict = json.loads(string_data)
+            graph = nx.from_dict_of_dicts(graph_dict)
+            save_graph(graph)
 
 
 def download():
     file_name = st.text_input("Name your graph")
-    file_name = file_name.lower().replace(" ", "_")
+    file_name = file_name.replace(" ", "_")
     file_name += ".json"
 
     graph = retrive_graph()
